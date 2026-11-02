@@ -1,4 +1,4 @@
-//ATIVIDADE 01 - MATRIZ 
+//ATIVIDADE 01 - Matriz 2x2 com valores definidos e exibição em tabela
 
 #include <stdio.h>
 
