@@ -110,4 +110,127 @@ implementadas.
 ===================================================================================================
                               CÓDIGO DA ATIVIDADE ABAIXO:
   
+#include <stdio.h>
 
+int main() {
+    int qtd, i;
+    
+    // Parte de armazenar os dados de até 5 pacientes
+    char nomes[5][50];
+    int idade[5], pressao[5], tabagismo[5], diabetes[5], doenca_cardiaca[5];
+    float ldl[5], peso[5], altura[5];
+    int sedentarismo[5], ultraprocessados[5], estresse[5], sono[5], sexo_masculino[5];
+
+    printf("========================================\n");
+    printf(" SISTEMA DE ANALISE DE RISCO CARDIOVASCULAR\n");
+    printf(" Dupla: Leticia Storch e Rhayanne Alves\n");
+    printf("========================================\n");
+
+    printf("Informe a quantidade de pacientes (1 a 5): ");
+    scanf("%d", &qtd);
+
+    if (qtd < 1) qtd = 1;
+    if (qtd > 5) qtd = 5;
+
+    // 1 - Entrada de Dados
+    for (i = 0; i < qtd; i++) {
+        printf("\n--- Cadastro do Paciente %d ---\n", i + 1);
+        
+        printf("Nome do paciente: ");
+        scanf("%s", nomes[i]); 
+
+        printf("Idade: ");
+        scanf("%d", &idade[i]);
+
+        printf("Pressao arterial sistolica (mmHg): ");
+        scanf("%d", &pressao[i]);
+
+        printf("Tabagismo (1 - Sim / 0 - Nao): ");
+        scanf("%d", &tabagismo[i]);
+
+        printf("Diabetes (1 - Sim / 0 - Nao): ");
+        scanf("%d", &diabetes[i]);
+
+        printf("Historico de doenca cardiaca (1 - Sim / 0 - Nao): ");
+        scanf("%d", &doenca_cardiaca[i]);
+
+        printf("Colesterol LDL (mg/dL): ");
+        scanf("%f", &ldl[i]);
+
+        printf("Peso (kg): ");
+        scanf("%f", &peso[i]);
+
+        printf("Altura (m): ");
+        scanf("%f", &altura[i]);
+
+        printf("Sedentarismo (1 - Sim / 0 - Nao): ");
+        scanf("%d", &sedentarismo[i]);
+
+        printf("Alimentacao rica em ultraprocessados (1 - Sim / 0 - Nao): ");
+        scanf("%d", &ultraprocessados[i]);
+
+        printf("Estresse cronico elevado (1 - Sim / 0 - Nao): ");
+        scanf("%d", &estresse[i]);
+
+        printf("Sono inadequado (1 - Sim / 0 - Nao): ");
+        scanf("%d", &sono[i]);
+
+        printf("Sexo biologico masculino (1 - Sim / 0 - Nao): ");
+        scanf("%d", &sexo_masculino[i]);
+    }
+
+    // 4 - Saída esperada (Relatório)
+    printf("\n========================================\n");
+    printf(" SISTEMA DE ANALISE DE RISCO\n");
+    printf("========================================\n");
+    printf("Quantidade de pacientes: %d\n", qtd);
+    
+    for (i = 0; i < qtd; i++) {
+        printf("Paciente %d: %s\n", i + 1, nomes[i]);
+    }
+
+    printf("========================================\n");
+    printf(" RELATORIO DE RISCO\n");
+    printf("========================================\n");
+
+    for (i = 0; i < qtd; i++) {
+        int pontos = 0;
+        float imc;
+
+        // Fatores Críticos (3 pontos cada)
+        if (diabetes[i] == 1) pontos += 3;
+        if (doenca_cardiaca[i] == 1) pontos += 3;
+        if (ldl[i] >= 160.0) pontos += 3;
+
+        if (altura[i] > 0) {
+            imc = peso[i] / (altura[i] * altura[i]);
+            if (imc >= 30.0) pontos += 3;
+        }
+
+        // Fatores Leves (1 ponto cada)
+        if (sedentarismo[i] == 1) pontos += 1;
+        if (ultraprocessados[i] == 1) pontos += 1;
+        if (estresse[i] == 1) pontos += 1;
+        if (sono[i] == 1) pontos += 1;
+        if (sexo_masculino[i] == 1) pontos += 1;
+
+        // Exibição da classificação baseada na pontuação
+        printf("Paciente: %s\n", nomes[i]);
+        printf("Classificacao: ");
+        
+        if (pontos <= 4) {
+            printf("Menor de 10%%\n");
+        } else if (pontos <= 9) {
+            printf("Entre 10%% e 20%%\n");
+        } else if (pontos <= 14) {
+            printf("Entre 20%% e 30%%\n");
+        } else if (pontos <= 18) {
+            printf("Entre 30%% e 50%%\n");
+        } else {
+            printf("Acima de 50%%\n");
+        }
+    }
+    printf("========================================\n");
+
+    return 0;
+}
