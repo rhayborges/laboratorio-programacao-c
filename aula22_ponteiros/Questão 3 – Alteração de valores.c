@@ -5,8 +5,6 @@ int main(void) {
     int *p = &numero;
 
     printf("Valor antes da alteracao: %d\n", numero);
-
-    // Altera diretamente o valor da variável através do ponteiro
     *p = 50;
 
     printf("Valor depois da alteracao: %d\n", numero);
